@@ -859,6 +859,28 @@ a:hover .fleche-ronde{transform:rotate(-12deg) scale(1.08)}
 .note-ajout{max-width:880px;margin:-6px 0 0;font:400 15.5px/1.45 var(--main);color:var(--gr2)}
 @media (max-width:700px){.stats{grid-template-columns:minmax(0,1fr)}}
 
+
+/* ---------- un portable : la vidéo s'ouvre d'abord dans un écran d'ordinateur, puis en plein écran ---------- */
+.portable{margin:0;max-width:900px}
+.portable__pc{position:relative;width:100%;aspect-ratio:1000/570}
+.portable__pc>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;filter:url(#crayon)}
+.portable__pc>svg path,.portable__pc>svg circle{stroke:var(--gr);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.portable__pc .p-ecran{fill:#33302c}
+.portable__pc .p-base{fill:#ddd7c8}
+.portable__pc .p-trait{fill:none;stroke-width:2.4}
+.portable__pc .p-cam{fill:#77726b;stroke:none}
+.portable__vitre{position:absolute;left:8.8%;top:6.3%;width:82.4%;height:81.4%;overflow:hidden;background:#111}
+.portable video{display:block;width:100%;height:100%;object-fit:contain;background:#111}
+.portable video:focus-visible{outline:3px dashed var(--bleu);outline-offset:-3px}
+.portable__lire{position:absolute;left:50%;top:50%;z-index:2;width:76px;height:76px;margin:-38px 0 0 -38px;display:grid;place-items:center;border:3px solid var(--fiche);border-radius:50%;background:rgba(201,59,49,.92);color:var(--fiche);cursor:pointer;transition:transform .3s var(--e-ressort),background .3s}
+.portable__lire:hover{transform:scale(1.08);background:var(--rouge)}
+.portable__lire svg{width:30px;height:30px;margin-left:4px;fill:currentColor;stroke:none}
+.portable.joue .portable__lire{display:none}
+.portable__ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:14px 4px 0}
+.portable__ctrl .portable__plein{margin-left:auto;display:inline-flex;align-items:center;gap:7px}
+.portable__plein svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.portable__plein[hidden]{display:none}
+@media (max-width:700px){.portable__lire{width:58px;height:58px;margin:-29px 0 0 -29px}.portable__lire svg{width:24px;height:24px}}
 </style>
 </head>
 <body>
@@ -1070,13 +1092,16 @@ const DONNEES = {
         { titre: 'Modéliser', picto: 'maquette', texte: 'On redessine le bâtiment dans **Revit** ou ArchiCAD, par-dessus le nuage.' },
         { titre: 'Réaliser', picto: 'truelle', texte: 'La **maquette numérique** sert aux études et à la réalisation du chantier.' },
       ] },
+      { type: 'video', id: 'v-nuage', titre: 'Un nuage de points dans Revit', hint: 'Lancez la vidéo, ou passez-la en plein écran : le nuage de points d’une maison, parcouru en 3D. Dans la partie 5, vous insérez vous-même un nuage de points dans Revit.', items: [
+        { nom: 'Dans Revit', titre: 'Un nuage de points dans Revit', src: 'videos/nuage-de-points-revit.mp4', poster: 'videos/nuage-de-points-revit.jpg', duree: 12, texte: 'Le nuage de points d’une maison inséré dans un projet Revit, parcouru en vue 3D.' },
+      ] },
       { type: 'grille', titre: 'Ce que vous apprenez en le faisant', items: [
         { titre: 'Les outils de relevé', picto: 'regle', texte: '**Maîtriser** le drone, le scanner 3D et leurs logiciels.' },
         { titre: 'Les lots techniques', picto: 'couches', texte: '**Découvrir** les différents lots techniques d’un bâtiment.' },
         { titre: 'Les techniques de construction', picto: 'murs', texte: '**Découvrir** comment le bâtiment a été construit.' },
       ] },
       { type: 'alerte', titre: 'À ne pas confondre', textes: ['**Capturer** n’est pas **modéliser**. Un nuage de points est une photographie en 3D faite de millions de points : il n’a ni murs, ni fenêtres, ni matériaux. Ce sont les murs et les fenêtres de la **maquette numérique** qui en ont.'] },
-      { type: 'note', texte: 'Source : diaporama « Diagnostic technique » du CMQE. Ajouts de la rédaction : les problématiques, les croquis, la répartition des durées (10 + 15 + 20 + 35 + 40 min) et le quiz.' },
+      { type: 'note', texte: 'Source : diaporama « Diagnostic technique » du CMQE, dont sont tirées les huit vidéos du cours (captures d’écran, sans son). Ajouts de la rédaction : les problématiques, les croquis, la répartition des durées (10 + 15 + 20 + 35 + 40 min) et le quiz.' },
     ],
     2: [
       { type: 'scene', id: 'missions', titre: 'Trois missions pour un drone', hint: 'Cliquez sur une mission, dans le dessin ou sur une fiche : le drone change de travail.' },
@@ -1086,6 +1111,9 @@ const DONNEES = {
         'Dans le logiciel d’analyse du diaporama, quatre réglages précèdent la lecture des températures : la **distance**, l’**humidité**, l’**émissivité** et la **température réfléchie**.',
       ] },
       { type: 'scene', id: 'thermo', titre: 'Lire un thermogramme', hint: 'Faites glisser le curseur : l’écart de température entre l’intérieur et l’extérieur change les couleurs de chaque paroi.' },
+      { type: 'video', id: 'v-thermo', titre: 'Analyser un thermogramme', hint: 'Lancez la vidéo, ou passez-la en plein écran : un thermogramme pris par drone, ouvert dans un logiciel d’analyse.', items: [
+        { nom: 'Thermogramme', titre: 'Un thermogramme pris par drone', src: 'videos/thermographie-drone.mp4', poster: 'videos/thermographie-drone.jpg', duree: 62, texte: 'L’image infrarouge d’un bâtiment : on règle l’échelle de couleurs et on place des points de mesure pour lire des températures.' },
+      ] },
       { type: 'grille', titre: 'À quoi sert l’inspection technique', items: [
         { titre: 'Toitures, terrasses, façades', picto: 'toit', texte: '**Visualiser précisément** leur état, sans échafaudage ni nacelle.' },
         { titre: 'Éléments intérieurs', picto: 'charpente', texte: '**Visualiser précisément** une verrière, des vitraux, une charpente.' },
@@ -1110,7 +1138,12 @@ const DONNEES = {
       ] },
       { type: 'duo', items: [
         { titre: 'Étude de cas · INSA', picto: 'ouvrage', textes: ['Un bâtiment du **département de génie civil de l’INSA** est reconstruit à partir de photos : nuage de points, maillage, texture.', 'Le modèle est ensuite ouvert dans **Twinmotion**, où l’on peut simuler un chantier (échafaudage, végétation).'] },
-        { titre: 'Étude de cas · masque végétal', picto: 'feuille', textes: ['Un **masque végétal** est l’ombre que portent les arbres sur un bâtiment : il joue sur la **protection solaire**.', 'Le diaporama traite le cas avec **Revit** et **Twinmotion** ; il n’en dit pas plus, à compléter en classe.'] },
+        { titre: 'Étude de cas · masque végétal', picto: 'feuille', textes: ['Un **masque végétal** est l’ombre que portent les arbres sur un bâtiment : il joue sur la **protection solaire**.', 'Dans la vidéo, une **pergola** dessinée dans **Revit** est posée dans la scène **Twinmotion** du domaine.'] },
+      ] },
+      { type: 'video', id: 'v-cas', titre: 'Les études de cas en vidéo', hint: 'Choisissez une vidéo, lancez-la, puis passez en plein écran pour la regarder en grand.', items: [
+        { nom: 'INSA · visite', titre: 'Le bâtiment de l’INSA dans Twinmotion', src: 'videos/photogrammetrie-insa.mp4', poster: 'videos/photogrammetrie-insa.jpg', duree: 32, texte: 'Le modèle reconstruit à partir de photos d’un bâtiment du département de génie civil, parcouru dans Twinmotion.' },
+        { nom: 'INSA · chantier', titre: 'Un chantier simulé sur le bâtiment', src: 'videos/photogrammetrie-insa-chantier.mp4', poster: 'videos/photogrammetrie-insa-chantier.jpg', duree: 30, texte: 'Le même bâtiment mis en scène avec un échafaudage, des barrières, des bennes et une grue.' },
+        { nom: 'Masque végétal', titre: 'Masque végétal et protection solaire', src: 'videos/masque-vegetal-protection-solaire.mp4', poster: 'videos/masque-vegetal-protection-solaire.jpg', duree: 59, texte: 'Un domaine reconstruit en photogrammétrie, dans Twinmotion : une pergola dessinée dans Revit y est posée comme protection solaire.' },
       ] },
       { type: 'alerte', titre: 'Beau ne veut pas dire juste', textes: ['Un modèle texturé est très convaincant à l’écran, mais son **échelle** et sa **précision** dépendent de points de contrôle mesurés sur le terrain. Avant d’en tirer une cote, vérifiez-la.'] },
       { type: 'note', texte: 'Source : diaporama (chaîne en quatre étapes, logiciels, deux études de cas). Ajouts : la bande de 100 m et la photo de 40 m du curseur sont des exemples ; « 70 à 80 % » est un ordre de grandeur courant entre deux photos successives ; le classement des logiciels par rôle est de la rédaction.' },
@@ -1137,6 +1170,11 @@ const DONNEES = {
         { titre: 'Préparer un nuage de points', picto: 'nuage', texte: 'Dans **RealWorks**, on assemble les stations du rez-de-chaussée et de l’extérieur en un seul nuage.' },
         { titre: 'Mesurer', picto: 'regle', texte: 'Dans **Scan Explorer**, on parcourt la vue d’une station et on mesure directement dessus.' },
         { titre: 'Maquette numérique', picto: 'maquette', texte: 'Le nuage est inséré dans le logiciel de maquette : on le voit en plan, niveau par niveau.' },
+      ] },
+      { type: 'video', id: 'v-maison', titre: 'La maison individuelle en trois vidéos', hint: 'Choisissez l’étape, lancez la vidéo, puis passez en plein écran : du nuage de points à la maquette.', items: [
+        { nom: 'Préparer', titre: 'Préparer le nuage de points', src: 'videos/maison-preparer-le-nuage.mp4', poster: 'videos/maison-preparer-le-nuage.jpg', duree: 13, texte: 'Dans RealWorks, le nuage de points d’une maison individuelle, assemblé à partir de ses stations.' },
+        { nom: 'Mesurer', titre: 'Mesurer dans la vue d’une station', src: 'videos/maison-mesures.mp4', poster: 'videos/maison-mesures.jpg', duree: 20, texte: 'Dans Scan Explorer, on prend des mesures directement sur la vue d’une station (ici un escalier) : les distances s’affichent en millimètres.' },
+        { nom: 'Maquette', titre: 'Le nuage de points dans la maquette', src: 'videos/maison-maquette-numerique.mp4', poster: 'videos/maison-maquette-numerique.jpg', duree: 37, texte: 'Le nuage de points inséré dans le logiciel de maquette : le plan du niveau 0 à gauche, la vue 3D à droite.' },
       ] },
       { type: 'texte', titre: 'Étude de cas : le pont Louis Vicat, Souillac (46)', textes: [
         'Pour son **bicentenaire**, le pont sur la Dordogne a été relevé au scanner 3D. Le diaporama le présente comme le **premier pont construit avec du ciment artificiel** (un liant), inventé par l’ingénieur Louis Vicat.',
@@ -1903,6 +1941,53 @@ SCENES.orientation = el => sceneCurseur(el, {
   texte: E => typo(`<p>${E.v === 0 ? 'Le nuage est aligné : ses points tombent sur les axes du projet.' : `Un nuage tourné de <b>${nf(E.v, 1)}°</b> se décale de <b>${decalage(E.v)} cm</b> au bout de 10 m.`}</p><p>Pour rester sous <b>1 cm</b> au bout de 10 m, l’angle doit être inférieur à <b>0,06°</b> : on n’oriente pas à l’œil, on s’appuie sur des points connus du projet.</p>`),
 });
 
+/* ---------- les vidéos du diaporama : d'abord dans l'écran d'un ordinateur portable, puis en plein écran ---------- */
+const duree = s => (s < 60 ? `${s}${NB}s` : `${Math.floor(s / 60)}${NB}min ${String(s % 60).padStart(2, '0')}${NB}s`);
+const PORTABLE = '<svg viewBox="0 0 1000 570" preserveAspectRatio="none" aria-hidden="true">'
+  + '<path class="p-ecran" d="M60 40Q60 10 90 10L910 10Q940 10 940 40L940 520L60 520Z"/>'
+  + '<circle class="p-cam" cx="500" cy="23" r="3.5"/>'
+  + '<path class="p-base" d="M20 524L980 524L962 556Q958 563 948 563L52 563Q42 563 38 556Z"/>'
+  + '<path class="p-trait" d="M432 525Q500 547 568 525"/></svg>';
+const ICO_LIRE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+const ICO_PLEIN = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"/></svg>';
+const VIDEOS = {};   // les vidéos de chaque bloc « video » : [{ nom, titre, src, poster, duree (s), texte }]
+Object.assign(BLOCS, {
+  video: b => {
+    VIDEOS[b.id] = b.items;
+    return `<div class="rv"><h3 class="bloc-titre">${esc(b.titre)}</h3>${hint(b)}<figure class="portable" data-video="${b.id}"><div class="scene__cadre">
+      <div class="portable__pc">${PORTABLE}<div class="portable__vitre"><video preload="none" controls playsinline controlslist="nodownload"></video><button class="portable__lire" type="button" aria-label="Lancer la vidéo">${ICO_LIRE}</button></div></div>
+      <div class="portable__ctrl" role="group" aria-label="Vidéo">${b.items.length > 1 ? b.items.map((it, i) => `<button class="scene__puce" type="button" aria-pressed="false" data-i="${i}">${esc(it.nom)}</button>`).join('') : ''}<button class="scene__puce portable__plein" type="button">${ICO_PLEIN}<span>Plein écran</span></button></div>
+      <p class="scene__legende" aria-live="off"></p></div></figure></div>`;
+  },
+});
+function initVideos() {
+  const pauseAutres = v => $$('.portable video').forEach(x => { if (x !== v && !x.paused) x.pause(); });
+  $$('.portable').forEach(fig => {
+    const items = VIDEOS[fig.dataset.video], v = $('video', fig), legende = $('.scene__legende', fig), puces = $$('[data-i]', fig), lire = $('.portable__lire', fig), plein = $('.portable__plein', fig);
+    const charger = i => {
+      const it = items[i];
+      v.pause(); fig.classList.remove('joue');
+      v.poster = it.poster; v.src = it.src; v.setAttribute('aria-label', `Vidéo : ${it.titre}, ${duree(it.duree)}`);
+      legende.innerHTML = `<b>${esc(it.titre)}</b> · ${duree(it.duree)} — ${fmt(it.texte)}`;
+      puces.forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.i === i)));
+    };
+    puces.forEach(b => b.addEventListener('click', () => { legende.setAttribute('aria-live', 'polite'); charger(+b.dataset.i); }));
+    v.addEventListener('play', () => { pauseAutres(v); fig.classList.add('joue'); });
+    v.addEventListener('ended', () => fig.classList.remove('joue'));
+    lire.addEventListener('click', () => { v.play().catch(() => {}); v.focus({ preventScroll: true }); });
+    const entrer = v.requestFullscreen || v.webkitRequestFullscreen || v.webkitEnterFullscreen;   // plein écran : Chrome, Edge, Firefox, Safari (iPhone compris)
+    if (!entrer) plein.hidden = true;
+    plein.addEventListener('click', () => {
+      if (document.fullscreenElement === v) { document.exitFullscreen().catch(() => {}); return; }
+      Promise.resolve(entrer.call(v)).catch(() => {});
+      if (v.paused) v.play().catch(() => {});
+    });
+    new IntersectionObserver(([e]) => { if (!e.isIntersecting && !v.paused && document.fullscreenElement !== v) v.pause(); }, { threshold: .1 }).observe(fig);   // hors de l'écran, la vidéo se met en pause
+    charger(0);
+  });
+}
+PLUS_INITS.push(initVideos);
+
 function htmlProbleme(texte, etiquette = 'PROBLÉMATIQUE') { return `<p class="postit probleme rv"><svg viewBox="0 0 34 34" aria-hidden="true">${etiquette.startsWith('PROBLÉMATIQUE') ? '<circle cx="17" cy="17" r="14"/><path d="M12.5 13a4.5 4.5 0 1 1 6.6 4c-1.4.8-2.1 1.8-2.1 3.2M17 25v.5"/>' : '<path d="M9 4h12l6 6v20H9z"/><path d="M21 4v6h6M13 16h10M13 21h10M13 26h6"/>'}</svg><span><small>${esc(etiquette)}</small>${esc(texte)}</span></p>`; }
 const piedAtelier = (prec, suiv, id) => `<div class="atelier__pied rv"><nav aria-label="Circuler entre les parties"><a class="lien" href="#accueil">↑ Haut de page</a><a class="lien" href="${prec}">← Précédent</a><a class="lien" href="${suiv}">Suivant →</a></nav><button class="btn btn-fait" type="button" id="fait-${id}" data-atelier="${id}" aria-pressed="false">${CASE}<span>${FAIT.marquer}</span></button></div>`;
 function htmlAtelier(a) {
@@ -2285,6 +2370,7 @@ function initPresentation(crochets) {
     if (e.ctrlKey || e.metaKey || e.altKey || cible.closest('input, textarea, select, [contenteditable="true"]')) return;
     const k = e.key;
     if (!PRES_ETAT.on) { if (k === 'p' || k === 'P') { e.preventDefault(); entrer(); } return; }
+    if (cible.closest('video') && [' ', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(k)) return;   // sur une vidéo, ces touches lisent et avancent la vidéo
     // une partie plus haute que l'écran défile d'abord ; arrivé en bas, on passe à la suivante
     const d = diapos[P.i], reste = d.scrollHeight - d.clientHeight - d.scrollTop, glisse = dy => d.scrollBy({ top: dy, behavior: REDUIT ? 'auto' : 'smooth' });
     if (k === 'PageDown' || (k === ' ' && !cible.closest('button, a, label, [role="button"], [role="checkbox"]'))) { e.preventDefault(); if (reste > 12) glisse(d.clientHeight * .8); else suivant(); }
