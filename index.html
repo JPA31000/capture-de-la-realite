@@ -241,6 +241,7 @@ a:hover .fleche-ronde{transform:rotate(-12deg) scale(1.08)}
 .table-wc p{margin:0 0 8px;color:var(--gr2);font-size:15px;line-height:1.45}
 .table-wc .duree{margin-top:auto;font:400 15.5px var(--main);color:var(--gr2)}
 .table-wc .tampon-fait{position:absolute;right:12px;top:14px}
+.table-wc .derniere{position:absolute;left:12px;top:12px;padding:1px 4px;font:400 15px/1.1 var(--main);color:var(--rouge);background:var(--fiche);transform:rotate(-3deg);pointer-events:none}
 .tables__total{margin:22px 0 0;font:400 18px var(--main);color:var(--gr2)}
 .tables__total b{font-weight:400;color:var(--rouge)}
 .tampon-fait{display:inline-block;padding:1px 10px;font:400 17px var(--main);letter-spacing:.08em;color:var(--vert);border:2.2px solid currentColor;border-radius:5px;transform:rotate(-7deg);opacity:0;scale:1.4;transition:opacity .3s,scale .5s var(--e-ressort);pointer-events:none}
@@ -1112,7 +1113,7 @@ const DONNEES = {
         { titre: 'Les techniques de construction', picto: 'murs', texte: '**Découvrir** comment le bâtiment a été construit.' },
       ] },
       { type: 'alerte', titre: 'À ne pas confondre', textes: ['**Capturer** n’est pas **modéliser**. Un nuage de points est une photographie en 3D faite de millions de points : il n’a ni murs, ni fenêtres, ni matériaux. Ce sont les murs et les fenêtres de la **maquette numérique** qui en ont.'] },
-      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici, et un bouton « Retour au cours » vous ramène à la dernière partie vue.', items: [
         { cours: 'Le relevé et l’état des lieux', picto: 'plans', titre: 'Qu’est-ce qu’un relevé d’état des lieux ?', texte: 'Définition, objectifs et applications : à quoi sert de relever un existant.', url: SITE + 'releve-etat-des-lieux.html#atelier-1' },
         { cours: 'Le relevé et l’état des lieux', picto: 'regle', titre: 'Relevé direct, relevé indirect', texte: 'Des outils simples ou numériques : où se place la capture de la réalité.', url: SITE + 'releve-etat-des-lieux.html#atelier-2' },
         { cours: 'Méthode du relevé architectural', picto: 'conception', titre: 'Le relevé classique', texte: 'Au carnet, au crayon et au mètre : de quoi comparer avec le drone et le scanner.', url: SITE + 'releve-methode.html' },
@@ -1136,7 +1137,7 @@ const DONNEES = {
         { titre: 'Vues en hauteur', picto: 'drone', texte: '**Obtenir une prise de vue** depuis un endroit en hauteur.' },
       ] },
       { type: 'alerte', titre: 'Une surface n’est pas un mur', textes: ['Un thermogramme montre la température **de la surface** vue par la caméra, pas ce qui se passe à l’intérieur du mur. Le soleil direct ou la pluie faussent la lecture : on compare des surfaces dans des conditions voisines.'] },
-      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici, et un bouton « Retour au cours » vous ramène à la dernière partie vue.', items: [
         { cours: 'Le relevé par drone, du vol à Revit', picto: 'drone', titre: 'Le drone, un outil de relevé encadré', texte: 'Familles d’appareils, anatomie, règles de vol en France.', url: SITE + 'releve-drone.html#atelier-1' },
         { cours: 'Le relevé par drone, du vol à Revit', picto: 'camera', titre: 'Les capteurs : ce que le drone voit', texte: 'Photo, LiDAR, thermique, et les capteurs qui positionnent.', url: SITE + 'releve-drone.html#atelier-2' },
         { cours: 'Le relevé par drone, du vol à Revit', picto: 'toit', titre: 'Le drone, pour quoi faire ?', texte: 'Les usages du relevé par drone dans le bâtiment.', url: SITE + 'releve-drone.html#atelier-7' },
@@ -1167,7 +1168,7 @@ const DONNEES = {
         { nom: 'Masque végétal', titre: 'Masque végétal et protection solaire', src: 'videos/masque-vegetal-protection-solaire.mp4', poster: 'videos/masque-vegetal-protection-solaire.jpg', duree: 59, texte: 'Un domaine reconstruit en photogrammétrie, dans Twinmotion : une pergola dessinée dans Revit y est posée comme protection solaire.' },
       ] },
       { type: 'alerte', titre: 'Beau ne veut pas dire juste', textes: ['Un modèle texturé est très convaincant à l’écran, mais son **échelle** et sa **précision** dépendent de points de contrôle mesurés sur le terrain. Avant d’en tirer une cote, vérifiez-la.'] },
-      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici, et un bouton « Retour au cours » vous ramène à la dernière partie vue.', items: [
         { cours: 'Le relevé par drone, du vol à Revit', picto: 'maillage', titre: 'La photogrammétrie : mesurer avec des photos', texte: 'Des points homologues au nuage dense et au maillage.', url: SITE + 'releve-drone.html#atelier-4' },
         { cours: 'Le relevé par drone, du vol à Revit', picto: 'camera', titre: 'La technique des prises de vues', texte: 'Recouvrements, résolution au sol, lumière et réglages.', url: SITE + 'releve-drone.html#atelier-5' },
         { cours: 'Le relevé par drone, du vol à Revit', picto: 'nuage', titre: 'Assembler et nettoyer', texte: 'Logiciels de calcul, de nettoyage, et formats d’échange.', url: SITE + 'releve-drone.html#atelier-6' },
@@ -1207,7 +1208,7 @@ const DONNEES = {
         'Dans **RealWorks**, le nuage de points de l’ouvrage ; dans la vue d’une station, des **mesures prises directement sur l’image**.',
       ] },
       { type: 'alerte', titre: 'Pas d’assemblage sans zone commune', textes: ['Deux stations qui ne voient aucune surface en commun ne peuvent pas être recollées. Un minimum de l’ordre de **30 %** de recouvrement est souvent cité : visez plus, et ajoutez des **repères** vus des deux côtés.'] },
-      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici, et un bouton « Retour au cours » vous ramène à la dernière partie vue.', items: [
         { cours: 'Le scanner 3D et le nuage de points', picto: 'scanner', titre: 'Le scanner laser Trimble X7', texte: 'Mesurer des millions de points sans toucher au bâtiment.', url: SITE + 'nuage-de-points.html#atelier-1' },
         { cours: 'Le scanner 3D et le nuage de points', picto: 'tablette', titre: 'Sur le terrain avec la tablette', texte: 'Poser, régler, scanner, déplacer, recaler.', url: SITE + 'nuage-de-points.html#atelier-2' },
         { cours: 'Le scanner 3D et le nuage de points', picto: 'portable', titre: 'Traiter le nuage avec RealWorks', texte: 'Importer, recaler, nettoyer, exporter.', url: SITE + 'nuage-de-points.html#atelier-3' },
@@ -1230,7 +1231,7 @@ const DONNEES = {
         { titre: 'Se repérer', picto: 'boussole', texte: '**Se repérer** dans l’espace et structurer un environnement de travail numérique.' },
       ] },
       { type: 'alerte', titre: 'Orienter à l’œil, c’est se tromper', textes: ['Au bout de 10 m, **1° de trop** décale déjà le nuage de **17 cm**. Pour rester sous 1 cm, il faut moins de **0,06°** : on s’appuie sur des points connus, pas sur l’impression visuelle.'] },
-      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici, et un bouton « Retour au cours » vous ramène à la dernière partie vue.', items: [
         { cours: 'Le scanner 3D et le nuage de points', picto: 'maquette', titre: 'Le nuage de points dans Revit', texte: 'Lier, isoler, s’accrocher, modéliser.', url: SITE + 'nuage-de-points.html#atelier-4' },
         { cours: 'Le relevé par drone, du vol à Revit', picto: 'boussole', titre: 'Le nuage de points dans Revit', texte: 'Lier le nuage, le caler en coupe, créer les niveaux, modéliser.', url: SITE + 'releve-drone.html#atelier-8' },
         { cours: 'Le relevé et l’état des lieux', picto: 'plans', titre: 'La restitution graphique', texte: 'De l’esquisse aux plans, coupes et façades.', url: SITE + 'releve-etat-des-lieux.html#atelier-4' },
@@ -2028,6 +2029,43 @@ function initVideos() {
   });
 }
 PLUS_INITS.push(initVideos);
+
+/* ---------- reprendre où l'on s'était arrêté : la dernière partie vue est gardée sur cet ordinateur ---------- */
+function initReprise() {
+  const CLE = 'carnet-' + DONNEES.cle + '-dernier';   // lue aussi par les quatre cours voisins du carnet (même origine) : leur bouton « Retour au cours »
+  const secs = $$('main > section.atelier, #quiz');
+  const nomPartie = s => { const m = /^atelier-(\d+)$/.exec(s.id), a = m && AT.find(x => x.id === +m[1]); return a ? { n: a.id, court: a.court, titre: a.titre } : { n: 0, court: 'Je vérifie', titre: 'Je vérifie' }; };
+  const libelle = d => (d.n ? `${DONNEES.mot} ${d.n} · ${String(d.court).toLowerCase()}` : String(d.court).toLowerCase());
+  const lu = lire(CLE, null), valide = lu && typeof lu.id === 'string' && secs.some(s => s.id === lu.id) ? lu : null;
+  let derniere = valide ? valide.id : '';
+  const marquerTable = () => {   // la table de la partie vue en dernier porte une petite mention
+    $$('.table-wc .derniere').forEach(e => e.remove());
+    const t = $(`.table-wc[href="#${derniere}"]`); if (t) t.insertAdjacentHTML('beforeend', '<span class="derniere">↩ dernière partie vue</span>');
+  };
+  const courante = () => {   // la partie qui occupe l'écran : celle dont le haut a passé 45 % de la hauteur
+    if (PRES_ETAT.on) return secs.find(s => s.id === PRES_ETAT.id) || null;
+    let cur = null; secs.forEach(s => { if (s.getBoundingClientRect().top < innerHeight * .45) cur = s; });
+    return cur;
+  };
+  const noter = () => {
+    const s = courante(); if (!s || s.id === derniere) return;
+    derniere = s.id; ecrire(CLE, { id: s.id, ...nomPartie(s), t: Date.now() }); marquerTable();
+  };
+  let attente = false;
+  addEventListener('scroll', () => { if (attente) return; attente = true; requestAnimationFrame(() => { attente = false; noter(); }); }, { capture: true, passive: true });   // capture : le défilement d'une partie en mode présentation aussi
+  setInterval(noter, 1000);
+  marquerTable();
+  if (!valide || location.hash) return;   // un lien précis (#atelier-2) passe avant la mémoire
+  const type = performance.getEntriesByType?.('navigation')?.[0]?.type;
+  if (type === 'back_forward' || type === 'reload') {   // retour par la flèche du navigateur : le navigateur remet la page en place ; sinon on y va
+    setTimeout(() => { if (scrollY < 200) document.getElementById(valide.id)?.scrollIntoView({ behavior: 'instant', block: 'start' }); }, 500);
+    return;
+  }
+  const cta = $('.cta'); if (!cta) return;
+  $('.btn--plein', cta)?.classList.remove('btn--plein');   // « Commencer » redevient un bouton ordinaire
+  cta.insertAdjacentHTML('afterbegin', `<a class="btn btn--plein btn-reprendre" href="#${valide.id}">↩ Reprendre${NB}: ${esc(libelle(valide))}</a>`);
+}
+PLUS_INITS.push(initReprise);
 
 function htmlProbleme(texte, etiquette = 'PROBLÉMATIQUE') { return `<p class="postit probleme rv"><svg viewBox="0 0 34 34" aria-hidden="true">${etiquette.startsWith('PROBLÉMATIQUE') ? '<circle cx="17" cy="17" r="14"/><path d="M12.5 13a4.5 4.5 0 1 1 6.6 4c-1.4.8-2.1 1.8-2.1 3.2M17 25v.5"/>' : '<path d="M9 4h12l6 6v20H9z"/><path d="M21 4v6h6M13 16h10M13 21h10M13 26h6"/>'}</svg><span><small>${esc(etiquette)}</small>${esc(texte)}</span></p>`; }
 const piedAtelier = (prec, suiv, id) => `<div class="atelier__pied rv"><nav aria-label="Circuler entre les parties"><a class="lien" href="#accueil">↑ Haut de page</a><a class="lien" href="${prec}">← Précédent</a><a class="lien" href="${suiv}">Suivant →</a></nav><button class="btn btn-fait" type="button" id="fait-${id}" data-atelier="${id}" aria-pressed="false">${CASE}<span>${FAIT.marquer}</span></button></div>`;
