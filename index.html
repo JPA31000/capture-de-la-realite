@@ -881,6 +881,17 @@ a:hover .fleche-ronde{transform:rotate(-12deg) scale(1.08)}
 .portable__plein svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .portable__plein[hidden]{display:none}
 @media (max-width:700px){.portable__lire{width:58px;height:58px;margin:-29px 0 0 -29px}.portable__lire svg{width:24px;height:24px}}
+
+/* ---------- « Pour aller plus loin » : des cartes qui mènent aux cours voisins du carnet ---------- */
+.liens-cours{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px 14px;margin:6px 0 0;padding:0;list-style:none}
+.lien-cours{--c:var(--ca,var(--bleu));display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:2px 12px;align-items:start;height:100%;padding:11px 14px 12px;background:var(--fiche);border:1.6px dashed var(--gr3);border-radius:8px 11px 7px 10px;color:var(--gr);text-decoration:none;transition:border-color .3s,background .3s,transform .4s var(--e-ressort)}
+.lien-cours:hover,.lien-cours:focus-visible{border-style:solid;border-color:var(--c);background:color-mix(in srgb,var(--c) 8%,var(--fiche));transform:rotate(-.4deg)}
+.lien-cours>svg{grid-row:1/span 3;width:34px;height:34px;overflow:visible;filter:url(#crayon)}
+.lien-cours>svg *{fill:none;stroke:var(--c);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lien-cours small{grid-column:2;font:400 14px/1.2 var(--main);color:var(--c)}
+.lien-cours b{grid-column:2;font:400 18px/1.2 var(--main);color:var(--gr)}
+.lien-cours .t{grid-column:2;font-size:14.5px;line-height:1.45;color:var(--gr2)}
+.lien-cours__fl{grid-column:3;grid-row:1;font:400 20px/1 var(--main);color:var(--c)}
 </style>
 </head>
 <body>
@@ -1053,7 +1064,7 @@ const DONNEES = {
   pied: 'Cours « La capture de la réalité » pour le génie civil (lycée professionnel, Campus BTP) : drone, photogrammétrie, scanner 3D et nuage de points dans Revit, avec des schémas à manipuler et un quiz.',
   total: '<b>5 parties</b> pour une séance de <b>2 heures</b> (10 + 15 + 20 + 35 + 40 min), puis «&nbsp;Je vérifie&nbsp;» (8 questions, sans code).',
   quizChapo: '8 questions sur l’ensemble du cours. Une seule bonne réponse par question, et une explication après la validation.',
-  liensCarnet: [['Scanner 3D et nuage de points', SITE + 'nuage-de-points.html'], ['Le relevé par drone', SITE + 'releve-drone.html'], ['Méthode du relevé', SITE + 'releve-methode.html']],   // « Le carnet » du pied de page
+  liensCarnet: [['Le relevé et l’état des lieux', SITE + 'releve-etat-des-lieux.html'], ['Méthode du relevé architectural', SITE + 'releve-methode.html'], ['Le relevé par drone, du vol à Revit', SITE + 'releve-drone.html'], ['Le scanner 3D et le nuage de points', SITE + 'nuage-de-points.html']],   // « Le carnet » du pied de page
   objectifs: { titre: 'Objectifs de la séance',
     intro: 'Séance de **2 heures** pour les élèves de génie civil (lycée professionnel, Campus BTP). Matériel : scanner Trimble X7 et tablette, application FieldLink, PC avec Revit, nuage de points RCP déjà nettoyé.',
     liste: ['Comprendre **les principes** de la capture de la réalité.', 'Découvrir le **scanner Trimble X7** et l’application **FieldLink**.', 'Savoir **insérer et orienter** un nuage de points dans Revit.'] },
@@ -1101,6 +1112,11 @@ const DONNEES = {
         { titre: 'Les techniques de construction', picto: 'murs', texte: '**Découvrir** comment le bâtiment a été construit.' },
       ] },
       { type: 'alerte', titre: 'À ne pas confondre', textes: ['**Capturer** n’est pas **modéliser**. Un nuage de points est une photographie en 3D faite de millions de points : il n’a ni murs, ni fenêtres, ni matériaux. Ce sont les murs et les fenêtres de la **maquette numérique** qui en ont.'] },
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+        { cours: 'Le relevé et l’état des lieux', picto: 'plans', titre: 'Qu’est-ce qu’un relevé d’état des lieux ?', texte: 'Définition, objectifs et applications : à quoi sert de relever un existant.', url: SITE + 'releve-etat-des-lieux.html#atelier-1' },
+        { cours: 'Le relevé et l’état des lieux', picto: 'regle', titre: 'Relevé direct, relevé indirect', texte: 'Des outils simples ou numériques : où se place la capture de la réalité.', url: SITE + 'releve-etat-des-lieux.html#atelier-2' },
+        { cours: 'Méthode du relevé architectural', picto: 'conception', titre: 'Le relevé classique', texte: 'Au carnet, au crayon et au mètre : de quoi comparer avec le drone et le scanner.', url: SITE + 'releve-methode.html' },
+      ] },
       { type: 'note', texte: 'Source : diaporama « Diagnostic technique » du CMQE, dont sont tirées les huit vidéos du cours (captures d’écran, sans son). Ajouts de la rédaction : les problématiques, les croquis, la répartition des durées (10 + 15 + 20 + 35 + 40 min) et le quiz.' },
     ],
     2: [
@@ -1120,6 +1136,11 @@ const DONNEES = {
         { titre: 'Vues en hauteur', picto: 'drone', texte: '**Obtenir une prise de vue** depuis un endroit en hauteur.' },
       ] },
       { type: 'alerte', titre: 'Une surface n’est pas un mur', textes: ['Un thermogramme montre la température **de la surface** vue par la caméra, pas ce qui se passe à l’intérieur du mur. Le soleil direct ou la pluie faussent la lecture : on compare des surfaces dans des conditions voisines.'] },
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+        { cours: 'Le relevé par drone, du vol à Revit', picto: 'drone', titre: 'Le drone, un outil de relevé encadré', texte: 'Familles d’appareils, anatomie, règles de vol en France.', url: SITE + 'releve-drone.html#atelier-1' },
+        { cours: 'Le relevé par drone, du vol à Revit', picto: 'camera', titre: 'Les capteurs : ce que le drone voit', texte: 'Photo, LiDAR, thermique, et les capteurs qui positionnent.', url: SITE + 'releve-drone.html#atelier-2' },
+        { cours: 'Le relevé par drone, du vol à Revit', picto: 'toit', titre: 'Le drone, pour quoi faire ?', texte: 'Les usages du relevé par drone dans le bâtiment.', url: SITE + 'releve-drone.html#atelier-7' },
+      ] },
       { type: 'note', texte: 'Source : diaporama (trois missions, définition de la thermographie, réglages du logiciel). Ajouts : le curseur utilise un modèle simplifié (température de surface extérieure = air extérieur + U × écart × 0,04) ; les valeurs de U (0,3 ; 2 ; 5 W/(m²·K)) sont des exemples, pas des mesures.' },
     ],
     3: [
@@ -1146,6 +1167,11 @@ const DONNEES = {
         { nom: 'Masque végétal', titre: 'Masque végétal et protection solaire', src: 'videos/masque-vegetal-protection-solaire.mp4', poster: 'videos/masque-vegetal-protection-solaire.jpg', duree: 59, texte: 'Un domaine reconstruit en photogrammétrie, dans Twinmotion : une pergola dessinée dans Revit y est posée comme protection solaire.' },
       ] },
       { type: 'alerte', titre: 'Beau ne veut pas dire juste', textes: ['Un modèle texturé est très convaincant à l’écran, mais son **échelle** et sa **précision** dépendent de points de contrôle mesurés sur le terrain. Avant d’en tirer une cote, vérifiez-la.'] },
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+        { cours: 'Le relevé par drone, du vol à Revit', picto: 'maillage', titre: 'La photogrammétrie : mesurer avec des photos', texte: 'Des points homologues au nuage dense et au maillage.', url: SITE + 'releve-drone.html#atelier-4' },
+        { cours: 'Le relevé par drone, du vol à Revit', picto: 'camera', titre: 'La technique des prises de vues', texte: 'Recouvrements, résolution au sol, lumière et réglages.', url: SITE + 'releve-drone.html#atelier-5' },
+        { cours: 'Le relevé par drone, du vol à Revit', picto: 'nuage', titre: 'Assembler et nettoyer', texte: 'Logiciels de calcul, de nettoyage, et formats d’échange.', url: SITE + 'releve-drone.html#atelier-6' },
+      ] },
       { type: 'note', texte: 'Source : diaporama (chaîne en quatre étapes, logiciels, deux études de cas). Ajouts : la bande de 100 m et la photo de 40 m du curseur sont des exemples ; « 70 à 80 % » est un ordre de grandeur courant entre deux photos successives ; le classement des logiciels par rôle est de la rédaction.' },
     ],
     4: [
@@ -1181,6 +1207,12 @@ const DONNEES = {
         'Dans **RealWorks**, le nuage de points de l’ouvrage ; dans la vue d’une station, des **mesures prises directement sur l’image**.',
       ] },
       { type: 'alerte', titre: 'Pas d’assemblage sans zone commune', textes: ['Deux stations qui ne voient aucune surface en commun ne peuvent pas être recollées. Un minimum de l’ordre de **30 %** de recouvrement est souvent cité : visez plus, et ajoutez des **repères** vus des deux côtés.'] },
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+        { cours: 'Le scanner 3D et le nuage de points', picto: 'scanner', titre: 'Le scanner laser Trimble X7', texte: 'Mesurer des millions de points sans toucher au bâtiment.', url: SITE + 'nuage-de-points.html#atelier-1' },
+        { cours: 'Le scanner 3D et le nuage de points', picto: 'tablette', titre: 'Sur le terrain avec la tablette', texte: 'Poser, régler, scanner, déplacer, recaler.', url: SITE + 'nuage-de-points.html#atelier-2' },
+        { cours: 'Le scanner 3D et le nuage de points', picto: 'portable', titre: 'Traiter le nuage avec RealWorks', texte: 'Importer, recaler, nettoyer, exporter.', url: SITE + 'nuage-de-points.html#atelier-3' },
+        { cours: 'Le scanner 3D et le nuage de points', picto: 'loupe', titre: 'Le panorama à 360° où l’on mesure', texte: 'Panoramas, mesures, lectures du nuage, du diagnostic au chantier.', url: SITE + 'nuage-de-points.html#atelier-5' },
+      ] },
       { type: 'note', texte: 'Source : diaporama (chaîne FieldLink › RealWorks › maquette, deux études de cas, notions clés). Ajouts : l’explication des trois notions clés, le plan à deux pièces (les pourcentages sont calculés sur ce croquis) et le seuil de 30 %, ordre de grandeur issu d’essais publiés, pas une règle universelle.' },
     ],
     5: [
@@ -1198,6 +1230,11 @@ const DONNEES = {
         { titre: 'Se repérer', picto: 'boussole', texte: '**Se repérer** dans l’espace et structurer un environnement de travail numérique.' },
       ] },
       { type: 'alerte', titre: 'Orienter à l’œil, c’est se tromper', textes: ['Au bout de 10 m, **1° de trop** décale déjà le nuage de **17 cm**. Pour rester sous 1 cm, il faut moins de **0,06°** : on s’appuie sur des points connus, pas sur l’impression visuelle.'] },
+      { type: 'liens', titre: 'Pour aller plus loin', hint: 'Ces cours du carnet complètent la partie. Ils s’ouvrent dans un nouvel onglet : vous gardez votre place ici.', items: [
+        { cours: 'Le scanner 3D et le nuage de points', picto: 'maquette', titre: 'Le nuage de points dans Revit', texte: 'Lier, isoler, s’accrocher, modéliser.', url: SITE + 'nuage-de-points.html#atelier-4' },
+        { cours: 'Le relevé par drone, du vol à Revit', picto: 'boussole', titre: 'Le nuage de points dans Revit', texte: 'Lier le nuage, le caler en coupe, créer les niveaux, modéliser.', url: SITE + 'releve-drone.html#atelier-8' },
+        { cours: 'Le relevé et l’état des lieux', picto: 'plans', titre: 'La restitution graphique', texte: 'De l’esquisse aux plans, coupes et façades.', url: SITE + 'releve-etat-des-lieux.html#atelier-4' },
+      ] },
       { type: 'note', texte: 'Source : diaporama (déroulement de la séance, matériel, compétences visées). Ajout : le curseur « Un degré de trop » est un calcul de géométrie (décalage = distance × sinus de l’angle), sur un plan d’exemple de 10 m × 6 m.' },
     ],
   },
@@ -1959,6 +1996,10 @@ Object.assign(BLOCS, {
       <div class="portable__ctrl" role="group" aria-label="Vidéo">${b.items.length > 1 ? b.items.map((it, i) => `<button class="scene__puce" type="button" aria-pressed="false" data-i="${i}">${esc(it.nom)}</button>`).join('') : ''}<button class="scene__puce portable__plein" type="button">${ICO_PLEIN}<span>Plein écran</span></button></div>
       <p class="scene__legende" aria-live="off"></p></div></figure></div>`;
   },
+});
+/* ---------- « Pour aller plus loin » : des liens vers les cours voisins du carnet (ils s'ouvrent dans un nouvel onglet) ---------- */
+Object.assign(BLOCS, {
+  liens: b => `<div class="rv"><h3 class="bloc-titre">${esc(b.titre)}</h3>${hint(b)}<ul class="liens-cours">${b.items.map(it => `<li><a class="lien-cours" href="${esc(it.url)}" target="_blank" rel="noopener">${picto(it.picto)}<small>${esc(it.cours)}</small><b>${esc(it.titre)}</b><span class="t">${fmt(it.texte)}</span><span class="lien-cours__fl" aria-hidden="true">↗</span><span class="sr"> (nouvel onglet)</span></a></li>`).join('')}</ul></div>`,
 });
 function initVideos() {
   const pauseAutres = v => $$('.portable video').forEach(x => { if (x !== v && !x.paused) x.pause(); });
